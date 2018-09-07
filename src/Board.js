@@ -13,12 +13,13 @@ class Board extends Component {
       turn: Constants.X,
       gameEnded: false,
       winner: undefined,
-      wList: ''
+      wList: '',
+      userName: 'Ходит игрок 1'
     }
 
     this.gameState = {
       board: Array(9).fill(''),
-      totalMov: 0
+      totalMov: 0,
     }
   }
 
@@ -33,6 +34,7 @@ class Board extends Component {
       event.target.innerHTML = this.state.turn;
       this.setState ({
         turn: this.state.turn == Constants.X ? Constants.O : Constants.X,
+        userName: this.state.userName == 'Ходит игрок 1' ? 'Ходит игрок 2' : 'Ходит игрок 1'
       })
       this.gameState.totalMov++
       console.log(this.gameState.totalMov)
@@ -43,7 +45,9 @@ class Board extends Component {
     if (result == 'X') {
       this.setState({
         gameEnded: true,
-        winner: 'X'
+        winner: 'X',
+        userName: '',
+        wList: 'Выиграли крестики!'
       })
       console.log('====================================');
       console.log('winner X');
@@ -53,7 +57,9 @@ class Board extends Component {
       this.setState({
         gameEnded: true,
         winner: 'O',
+        userName: '',
         wList: 'Выиграли нолики'
+
       })
       console.log('====================================');
       console.log('winner O');
@@ -63,6 +69,7 @@ class Board extends Component {
       this.setState({
         gameEnded: true,
         winner: 'draw',
+        userName: '',
         wList: 'Ничья!'
       })
       console.log('====================================');
@@ -81,8 +88,6 @@ class Board extends Component {
         return board[mov[i][0]]
       } else if (this.gameState.totalMov == 9) {
         return 'draw'
-      } else {
-        return false
       }
 
     }
@@ -93,7 +98,7 @@ class Board extends Component {
     return (
       <div>
         <div id="head">
-          <div className="headText">{this.state.wList}</div>
+          <div className="headText">{this.state.wList}{this.state.userName}</div>
         </div>
         <div id="board" onClick={(e) => this.clicked(e)}>
           {this.renderBox(0)}
