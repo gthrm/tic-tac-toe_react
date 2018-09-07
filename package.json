@@ -11,6 +11,26 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "description": "��#\u0000 \u0000t\u0000i\u0000c\u0000-\u0000t\u0000a\u0000c\u0000-\u0000t\u0000o\u0000e\u0000_\u0000r\u0000e\u0000a\u0000c\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gthrm/tic-tac-toe_react.git"
+  },
+  "keywords": [
+    "tic-tac-toe"
+  ],
+  "author": "cdROma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gthrm/tic-tac-toe_react/issues"
+  },
+  "homepage": "http://gthrm.github.io/tic-tac-toe_react"
 }
