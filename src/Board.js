@@ -5,13 +5,12 @@ import Box from './Box'
 import './Board.css'
 
 class Board extends Component {
-  
+
     renderBox(i) {
       return <Box id={i} />;
     }
   
     render() {
-      const status = 'Next player: X';
   
       return (
         <div>
