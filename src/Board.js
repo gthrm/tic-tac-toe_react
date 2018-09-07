@@ -28,14 +28,16 @@ class Board extends Component {
   clicked(event) {
 
     if (this.gameState.board[event.target.dataset.box] == '') {
-      this.gameState.board[event.target.dataset.box] = this.gameState.turn == Constants.X ? 'X' : 'O' 
+      this.gameState.board[event.target.dataset.box] = this.state.turn == Constants.X ? 'X' : 'O' 
       event.target.innerHTML = this.state.turn;
       this.setState ({
         turn: this.state.turn == Constants.X ? Constants.O : Constants.X,
       })
+      this.gameState.totalMov++
+      console.log(this.gameState.totalMov)
     }
 
-    let result = this.check()
+    var result = this.check()
 
     if (result == 'X') {
       this.setState({
@@ -58,18 +60,20 @@ class Board extends Component {
         gameEnded: true,
         winner: 'draw'
       })
+      console.log('====================================');
+      console.log('draw');
+      console.log('====================================');
     }
   }
 
   check() {
-    let mov = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6], [0, 1, 2], [3, 4, 5], [6, 7, 8]]
-    let board = this.gameState.board
+    var mov = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6], [0, 1, 2], [3, 4, 5], [6, 7, 8]]
+    var board = this.gameState.board
     for (let i = 0; i<mov.length; i++) {
       
       if (board[mov[i][0]] == board[mov[i][1]] && board[mov[i][1]] == board[mov[i][2]]) {
         return board[mov[i][0]]
       }
-      console.log(this.gameState.totalMov);
       
       if (this.gameState.totalMov == 9) {
         return 'draw'
