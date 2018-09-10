@@ -5,6 +5,8 @@ import BoardUser from './BoardUser.js'
 
 import Menu from './Menu.js'
 
+import './api/index.js'
+
 import './Game.css'
 
 class Game extends Component {
@@ -36,16 +38,23 @@ class Game extends Component {
     });
   }
 
+  gameAllfunc(){
+    return this.gameAll();
+  }
+
   render() {
     return (
       <div className="game">
         {this.state.menuOn == true ? <Menu updateData={this.updateData} /> : null}
         <div className="game-board" >
-          {this.state.selectedOptionUser === 'user1' ? <BoardBot key={this.state.key} updateForce={this.updateForce} tools={this.state.selectedOptionTools} /> : <BoardUser key={this.state.key} tools={this.state.selectedOptionTools} updateForce={this.updateForce} />}
+          {this.state.selectedOptionUser === 'user1' ? <BoardBot apiCreateWinGame={this.createWinGame} apiCreateGame={this.createGame} apiGameWin={this.gameWin} apiGameAll={this.gameAll} key={this.state.key} updateForce={this.updateForce} tools={this.state.selectedOptionTools} /> : <BoardUser key={this.state.key} tools={this.state.selectedOptionTools} updateForce={this.updateForce} />}
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
+          <div className='info'>
+            <p className='all'>{() => this.gameAllFunc()}</p>
+            <p className='win'>{(e)=>this.gameWin(e)}</p>
+          </div>
+          
         </div>
       </div>
     )
