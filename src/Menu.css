@@ -48,7 +48,7 @@ input[type='radio']:after {
     display: inline-block;
     visibility: visible;
     border: 2px solid white;
-}
+} 
 
 input[type='radio']:checked:after {
     width: 10px;
