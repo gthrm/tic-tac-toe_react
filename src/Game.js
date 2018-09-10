@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
-import Board from './Board.js'
-import Start from './Start.js'
+import BoardBot from './BoardBot.js'
+import BoardUser from './BoardUser.js'
+
 import Menu from './Menu.js'
 
 import './Game.css'
@@ -11,27 +12,26 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      visible: true,
-      menuOn: true
+      menuOn: true,
+      selectedOptionUser: '',
+      selectedOptionTools: ''
     }
   }
 
-  Clicked() {
-    console.log('====================================')
-    console.log(this)
-    console.log('====================================')
+  updateData = (value) => {
     this.setState({
-      visible: false
+      selectedOptionTools: value.selectedOptionTools,
+      selectedOptionUser: value.selectedOptionUser,
+      menuOn: value.menuOn
     });
   }
 
   render() {
     return (
       <div className="game">
-        {this.state.menuOn == true ? <Menu /> : null}
-        <div className="game-board" onClick={(e)=>this.Clicked(e.target)}>
-          {this.state.visible == true ? <Start /> : null}
-          <Board />
+        {this.state.menuOn == true ? <Menu updateData={this.updateData} /> : null}
+        <div className="game-board" >
+          {this.state.selectedOptionUser === 'user1' ? <BoardBot tools={this.state.selectedOptionTools}/> : <BoardUser tools={this.state.selectedOptionTools}/>}
         </div>
         <div className="game-info">
           <div>{/* status */}</div>

@@ -5,7 +5,7 @@ import Constants from './Constants.js'
 
 import './Board.css'
 
-class Board extends Component {
+class BoardBot extends Component {
   
   constructor(props) {
     super(props)
@@ -18,9 +18,10 @@ class Board extends Component {
     this.gameState = {
       board: Array(9).fill(''),
       totalMov: 0,
-      turn: Constants.X,
+      turn: this.props.tools === 'X' ? Constants.X : Constants.O,
       gameEnded: false,
-      gameLocked: false
+      gameLocked: false,
+      botTurn: this.props.tools === 'X' ? Constants.O : Constants.X
     }
   }
 
@@ -29,6 +30,7 @@ class Board extends Component {
   }
 
   clicked(data) {
+
     if (this.gameState.gameEnded || this.gameState.gameLocked) return;
     
     if (this.gameState.board[data.dataset.box] == '') {
@@ -84,7 +86,7 @@ class Board extends Component {
       return false;
     }
     
-    if (this.gameState.turn == Constants.O && !this.gameState.gameEnded) {
+    if (this.gameState.turn === this.gameState.botTurn && !this.gameState.gameEnded) { ////Вот тут
       this.gameState.gameLocked = true;
       setTimeout(() => {
         do {
@@ -348,4 +350,4 @@ class Board extends Component {
   }
 }
 
-export default Board;
+export default BoardBot;

@@ -10,7 +10,8 @@ class Menu extends Component {
         super(props)
         this.state = {
             selectedOptionUser: 'user1',
-            selectedOptionTools: 'X'
+            selectedOptionTools: 'X',
+            menuOn: false
         }
     }
 
@@ -20,18 +21,12 @@ class Menu extends Component {
         this.setState({
             selectedOptionUser: this.state.selectedOptionUser==='user1'?'user2':'user1'
         });
-        return this.state.selectedOptionUser;
     }
 
     handleOptionChangeTools() {
         this.setState({
             selectedOptionTools: this.state.selectedOptionTools==='X'?'O':'X'
         });
-        return this.state.selectedOptionTools;
-    }
-
-    startGame() {
-        console.log('Start');   
     }
 
   render() {
@@ -54,7 +49,7 @@ class Menu extends Component {
                     </label>
                 </div>
             </div>
-            <div className="menu-params tools">
+            {this.state.selectedOptionUser === 'user1' ? <div className="menu-params tools">
                 <p id="text">Играть за:</p>
                 <div className="checkBut">
                     <label>
@@ -66,8 +61,8 @@ class Menu extends Component {
                         Нолики
                     </label>
                 </div>
-            </div>
-            <div className="menu-params start" id="startGame" onClick={() => this.startGame()}>
+            </div>: null}
+            <div className="menu-params start" id="startGame" onClick={() => {this.props.updateData(this.state)}}>
                 <p id="text">Start</p>
             </div>
 
