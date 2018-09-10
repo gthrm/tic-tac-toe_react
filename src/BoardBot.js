@@ -12,7 +12,8 @@ class BoardBot extends Component {
     this.state = {
       winner: undefined,
       wList: '',
-      userName: 'Ходит игрок 1'
+      userName: 'Ходит игрок 1',
+      key: this.props.key
     }
 
     this.gameState = {
@@ -21,7 +22,8 @@ class BoardBot extends Component {
       turn: this.props.tools === 'X' ? Constants.X : Constants.O,
       gameEnded: false,
       gameLocked: false,
-      botTurn: this.props.tools === 'X' ? Constants.O : Constants.X
+      botTurn: this.props.tools === 'X' ? Constants.O : Constants.X,
+      botTools: this.props.tools === 'X' ? 'O' : 'X'
     }
   }
 
@@ -102,105 +104,106 @@ class BoardBot extends Component {
   }
 
   botGo() {
-    if (this.gameState.board[0] == this.gameState.board[1] && this.gameState.board[0] == 'O' && document.getElementById(2).innerHTML == '' && this.gameState.board[0] != '') {
+    //Проверка на фигуры бота
+    if (this.gameState.board[0] == this.gameState.board[1] && this.gameState.board[0] == this.gameState.botTools && document.getElementById(2).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 1, ставь в 2');
       return(2);
       
-    }if (this.gameState.board[1] == this.gameState.board[2] && this.gameState.board[1] == 'O' && document.getElementById(0).innerHTML == '' && this.gameState.board[1] != '') {
+    }if (this.gameState.board[1] == this.gameState.board[2] && this.gameState.board[1] == this.gameState.botTools && document.getElementById(0).innerHTML == '' && this.gameState.board[1] != '') {
       console.log('1 = 2, ставь в 0');
       return(0);
       
-    }if (this.gameState.board[3] == this.gameState.board[4] && this.gameState.board[3] == 'O' && document.getElementById(5).innerHTML == '' && this.gameState.board[3] != '') {
+    }if (this.gameState.board[3] == this.gameState.board[4] && this.gameState.board[3] == this.gameState.botTools && document.getElementById(5).innerHTML == '' && this.gameState.board[3] != '') {
       console.log('3 = 4, ставь в 5');
       return(5);
       
-    }if (this.gameState.board[4] == this.gameState.board[5] && this.gameState.board[4] == 'O' && document.getElementById(3).innerHTML == '' && this.gameState.board[4] != '') {
+    }if (this.gameState.board[4] == this.gameState.board[5] && this.gameState.board[4] == this.gameState.botTools && document.getElementById(3).innerHTML == '' && this.gameState.board[4] != '') {
       console.log('4 = 5, ставь в 3');
       return(3);
       
-    }if (this.gameState.board[6] == this.gameState.board[7] && this.gameState.board[6] == 'O' && document.getElementById(8).innerHTML == '' && this.gameState.board[6] != '') {
+    }if (this.gameState.board[6] == this.gameState.board[7] && this.gameState.board[6] == this.gameState.botTools && document.getElementById(8).innerHTML == '' && this.gameState.board[6] != '') {
       console.log('6 = 7, ставь в 8');
       return(8);
       
-    }if (this.gameState.board[7] == this.gameState.board[8] && this.gameState.board[7] == 'O' && document.getElementById(6).innerHTML == '' && this.gameState.board[7] != '') {
+    }if (this.gameState.board[7] == this.gameState.board[8] && this.gameState.board[7] == this.gameState.botTools && document.getElementById(6).innerHTML == '' && this.gameState.board[7] != '') {
       console.log('7 = 8, ставь в 6');
       return(6);
       
-    }if (this.gameState.board[0] == this.gameState.board[3] && this.gameState.board[0] == 'O' && document.getElementById(6).innerHTML == '' && this.gameState.board[0] != '') {
+    }if (this.gameState.board[0] == this.gameState.board[3] && this.gameState.board[0] == this.gameState.botTools && document.getElementById(6).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 3, ставь в 6');
       return(6);
       
-    }if (this.gameState.board[3] == this.gameState.board[6] && this.gameState.board[3] == 'O' && document.getElementById(0).innerHTML == '' && this.gameState.board[3] != '') {
+    }if (this.gameState.board[3] == this.gameState.board[6] && this.gameState.board[3] == this.gameState.botTools && document.getElementById(0).innerHTML == '' && this.gameState.board[3] != '') {
       console.log('3 = 6, ставь в 0');
       return(0);
       
-    }if (this.gameState.board[1] == this.gameState.board[4] && this.gameState.board[1] == 'O' && document.getElementById(7).innerHTML == '' && this.gameState.board[1] != '') {
+    }if (this.gameState.board[1] == this.gameState.board[4] && this.gameState.board[1] == this.gameState.botTools && document.getElementById(7).innerHTML == '' && this.gameState.board[1] != '') {
       console.log('1 = 4, ставь в 7');
       return(7);
       
-    }if (this.gameState.board[4] == this.gameState.board[7] && this.gameState.board[4] == 'O' && document.getElementById(1).innerHTML == '' && this.gameState.board[4] != '') {
+    }if (this.gameState.board[4] == this.gameState.board[7] && this.gameState.board[4] == this.gameState.botTools && document.getElementById(1).innerHTML == '' && this.gameState.board[4] != '') {
       console.log('4 = 7, ставь в 1');
       return(1);
       
-    }if (this.gameState.board[2] == this.gameState.board[5] && this.gameState.board[2] == 'O' && document.getElementById(8).innerHTML == '' && this.gameState.board[2] != '') {
+    }if (this.gameState.board[2] == this.gameState.board[5] && this.gameState.board[2] == this.gameState.botTools && document.getElementById(8).innerHTML == '' && this.gameState.board[2] != '') {
       console.log('2 = 5, ставь в 8');
       return(8);
       
-    }if (this.gameState.board[5] == this.gameState.board[8] && this.gameState.board[5] == 'O' && document.getElementById(2).innerHTML == '' && this.gameState.board[5] != '') {
+    }if (this.gameState.board[5] == this.gameState.board[8] && this.gameState.board[5] == this.gameState.botTools && document.getElementById(2).innerHTML == '' && this.gameState.board[5] != '') {
       console.log('5 = 8, ставь в 2');
       return(2);
       
-    }if (this.gameState.board[0] == this.gameState.board[4] && this.gameState.board[0] == 'O' && document.getElementById(8).innerHTML == '' && this.gameState.board[0] != '') {
+    }if (this.gameState.board[0] == this.gameState.board[4] && this.gameState.board[0] == this.gameState.botTools && document.getElementById(8).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 4, ставь в 8');
       return(8);
       
-    }if (this.gameState.board[4] == this.gameState.board[8] && this.gameState.board[4] == 'O' && document.getElementById(0).innerHTML == '' && this.gameState.board[4] != '') {
+    }if (this.gameState.board[4] == this.gameState.board[8] && this.gameState.board[4] == this.gameState.botTools && document.getElementById(0).innerHTML == '' && this.gameState.board[4] != '') {
       console.log('4 = 8, ставь в 0');
       return(0);
       
-    }if (this.gameState.board[2] == this.gameState.board[4] && this.gameState.board[2] == 'O' && document.getElementById(6).innerHTML == '' && this.gameState.board[2] != '') {
+    }if (this.gameState.board[2] == this.gameState.board[4] && this.gameState.board[2] == this.gameState.botTools && document.getElementById(6).innerHTML == '' && this.gameState.board[2] != '') {
       console.log('2 = 4, ставь в 6');
       return(6);
       
-    }if (this.gameState.board[4] == this.gameState.board[6] && this.gameState.board[4] == 'O' && document.getElementById(2).innerHTML == '' && this.gameState.board[4] != '') {
+    }if (this.gameState.board[4] == this.gameState.board[6] && this.gameState.board[4] == this.gameState.botTools && document.getElementById(2).innerHTML == '' && this.gameState.board[4] != '') {
       console.log('4 = 6, ставь в 2');
       return(2);
       
-    }if (this.gameState.board[0] == this.gameState.board[6] && this.gameState.board[0] == 'O' && document.getElementById(3).innerHTML == '' && this.gameState.board[0] != '') {
+    }if (this.gameState.board[0] == this.gameState.board[6] && this.gameState.board[0] == this.gameState.botTools && document.getElementById(3).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 6, ставь в 3');
       return(3);
       
-    }if (this.gameState.board[1] == this.gameState.board[7] && this.gameState.board[1] == 'O' && document.getElementById(4).innerHTML == '' && this.gameState.board[1] != '') {
+    }if (this.gameState.board[1] == this.gameState.board[7] && this.gameState.board[1] == this.gameState.botTools && document.getElementById(4).innerHTML == '' && this.gameState.board[1] != '') {
       console.log('1 = 7, ставь в 4');
       return(4);
       
-    }if (this.gameState.board[2] == this.gameState.board[8] && this.gameState.board[2] == 'O' && document.getElementById(5).innerHTML == '' && this.gameState.board[2] != '') {
+    }if (this.gameState.board[2] == this.gameState.board[8] && this.gameState.board[2] == this.gameState.botTools && document.getElementById(5).innerHTML == '' && this.gameState.board[2] != '') {
       console.log('2 = 8, ставь в 5');
       return(5);
       
-    }if (this.gameState.board[0] == this.gameState.board[2] && this.gameState.board[0] == 'O' && document.getElementById(1).innerHTML == '' && this.gameState.board[0] != '') {
+    }if (this.gameState.board[0] == this.gameState.board[2] && this.gameState.board[0] == this.gameState.botTools && document.getElementById(1).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 2, ставь в 1');
       return(1);
       
-    }if (this.gameState.board[3] == this.gameState.board[5] && this.gameState.board[3] == 'O' && document.getElementById(4).innerHTML == '' && this.gameState.board[3] != '') {
+    }if (this.gameState.board[3] == this.gameState.board[5] && this.gameState.board[3] == this.gameState.botTools && document.getElementById(4).innerHTML == '' && this.gameState.board[3] != '') {
       console.log('3 = 5, ставь в 4');
       return(4);
       
-    }if (this.gameState.board[6] == this.gameState.board[8] && this.gameState.board[6] == 'O' && document.getElementById(7).innerHTML == '' && this.gameState.board[6] != '') {
+    }if (this.gameState.board[6] == this.gameState.board[8] && this.gameState.board[6] == this.gameState.botTools && document.getElementById(7).innerHTML == '' && this.gameState.board[6] != '') {
       console.log('6 = 8, ставь в 7');
       return(7);
       
-    }if (this.gameState.board[0] == this.gameState.board[8] && this.gameState.board[0] == 'O' && document.getElementById(4).innerHTML == '' && this.gameState.board[0] != '') {
+    }if (this.gameState.board[0] == this.gameState.board[8] && this.gameState.board[0] == this.gameState.botTools && document.getElementById(4).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 8, ставь в 4');
       return(4);
       
-    }if (this.gameState.board[2] == this.gameState.board[6] && this.gameState.board[2] == 'O' && document.getElementById(4).innerHTML == '' && this.gameState.board[2] != '') {
+    }if (this.gameState.board[2] == this.gameState.board[6] && this.gameState.board[2] == this.gameState.botTools && document.getElementById(4).innerHTML == '' && this.gameState.board[2] != '') {
       console.log('0 = 8, ставь в 4');
       return(4);
       
     }
   
-    //
+    // Общая проверка
     if (this.gameState.board[0] == this.gameState.board[1] && document.getElementById(2).innerHTML == '' && this.gameState.board[0] != '') {
       console.log('0 = 1, ставь в 2');
       return(2);
@@ -327,6 +330,8 @@ class BoardBot extends Component {
     }
   }
 
+  reloadLocation = (e) => this.forceUpdate(e);
+
   render() {
 
     return (
@@ -345,6 +350,13 @@ class BoardBot extends Component {
           {this.renderBox(7)}
           {this.renderBox(8)}
         </div>
+        {this.gameState.gameEnded ? 
+        <div className="newgame">
+          <div className="menu-params start reset" id="startGame" onClick={() => this.props.updateForce()}>
+            <p id="text">Еще раз!</p>
+          </div>
+        </div>
+          : null}
       </div>
     );
   }

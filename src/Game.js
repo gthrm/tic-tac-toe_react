@@ -14,8 +14,18 @@ class Game extends Component {
     this.state = {
       menuOn: true,
       selectedOptionUser: '',
-      selectedOptionTools: ''
+      selectedOptionTools: '',
+      key: 0
     }
+  }
+
+  updateForce = () => {
+    this.setState({
+      menuOn: !this.state.menuOn,
+      selectedOptionUser: '',
+      selectedOptionTools: '',
+      key: this.state.key+1
+    })
   }
 
   updateData = (value) => {
@@ -31,7 +41,7 @@ class Game extends Component {
       <div className="game">
         {this.state.menuOn == true ? <Menu updateData={this.updateData} /> : null}
         <div className="game-board" >
-          {this.state.selectedOptionUser === 'user1' ? <BoardBot tools={this.state.selectedOptionTools}/> : <BoardUser tools={this.state.selectedOptionTools}/>}
+          {this.state.selectedOptionUser === 'user1' ? <BoardBot key={this.state.key} updateForce={this.updateForce} tools={this.state.selectedOptionTools} /> : <BoardUser key={this.state.key} tools={this.state.selectedOptionTools} updateForce={this.updateForce} />}
         </div>
         <div className="game-info">
           <div>{/* status */}</div>
