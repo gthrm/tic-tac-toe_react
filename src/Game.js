@@ -5,7 +5,7 @@ import BoardUser from './BoardUser.js'
 
 import Menu from './Menu.js'
 
-import './api/index.js'
+import api from './api/index.js'
 
 import './Game.css'
 
@@ -17,7 +17,9 @@ class Game extends Component {
       menuOn: true,
       selectedOptionUser: '',
       selectedOptionTools: '',
-      key: 0
+      key: 0,
+      gameAll: '',
+      gameWin: ''
     }
   }
 
@@ -39,7 +41,22 @@ class Game extends Component {
   }
 
   gameAllfunc(){
-    return this.gameAll();
+    api.gameAll().then(({data})=>{
+      this.setState({
+        GameAll: data
+      });
+    });
+
+    api.gameWin().then(({data})=>{
+      this.setState({
+        GameWin: data
+      });
+    });
+
+    }
+
+  gameAllfuncWin(){
+    return api.gameWin();
   }
 
   render() {
@@ -51,8 +68,8 @@ class Game extends Component {
         </div>
         <div className="game-info">
           <div className='info'>
-            <p className='all'>{() => this.gameAllFunc()}</p>
-            <p className='win'>{(e)=>this.gameWin(e)}</p>
+            <p className='all'>{this.state.gameAll}</p>
+            <p className='win'>{this.state.gameWin}</p>
           </div>
           
         </div>
