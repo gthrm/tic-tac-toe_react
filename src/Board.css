@@ -7,7 +7,7 @@
 #head {
   position: absolute;
   width: 300px;
-  top: 10%;
+  top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,11 +33,16 @@
 }
 
 .reset {
-  margin-top: 400px;
+  position: absolute;
+  bottom: 10px;
 }
 
 @media (min-width:320px) and (max-width:1023px){
   #head {
-    top: 10px;
+    top: 5px;
+  }
+
+  .reset {
+  bottom: 5px;
   }
 }
