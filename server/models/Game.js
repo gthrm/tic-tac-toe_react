@@ -1,12 +1,18 @@
-import mongoose from 'mongoose';
+'use strict';
 
-const bul = false;
+var _mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+var _mongoose2 = _interopRequireDefault(_mongoose);
 
-const GameSchema = new Schema({
-    games: {type: Boolean, required: bul, default: true},
-    createdAt: {type: Date}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var bul = false;
+
+var Schema = _mongoose2.default.Schema;
+
+var GameSchema = new Schema({
+    games: { type: Boolean, required: bul, default: true },
+    createdAt: { type: Date }
 });
 
-mongoose.model('Game', GameSchema);
+_mongoose2.default.model('Game', GameSchema);
