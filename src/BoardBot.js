@@ -13,7 +13,7 @@ class BoardBot extends Component {
       winner: undefined,
       wList: '',
       userName: 'Ходит игрок 1',
-      key: this.props.key
+      key1: this.props.key1
     }
 
     this.gameState = {
@@ -52,8 +52,10 @@ class BoardBot extends Component {
     console.log('result', result);
     console.log('====================================');
     if (result == 'X') {
-      this.state.botTools !== 'X' ? (e)=>{this.props.apiCreateWinGame(e)} : console.log('Это бот выйграл');
-      (e)=>{this.props.apiCreateGame(e)};
+      console.log(this.gameState.botTools);
+      
+      this.gameState.botTools !== 'X' ? this.props.apiCreateWinGame() : console.log('Это бот выйграл');
+      this.props.apiCreateGame();
       this.gameState.gameEnded = true;
       this.setState({
         winner: 'X',
@@ -66,8 +68,8 @@ class BoardBot extends Component {
       return false;
 
     } else if (result == 'O') {
-      this.state.botTools !== 'O' ? (e)=>{this.props.apiCreateWinGame(e)} : console.log('Это бот выйграл');
-      (e)=>{this.props.apiCreateGame(e)};
+      this.gameState.botTools !== 'O' ? this.props.apiCreateWinGame() : console.log('Это бот выйграл');
+      this.props.apiCreateGame();
       this.gameState.gameEnded = true;
       this.setState({
         winner: 'O',
@@ -80,7 +82,7 @@ class BoardBot extends Component {
       return false;
 
     } else if (result == 'draw') {
-      (e)=>{this.props.apiCreateGame(e)};
+      this.props.apiCreateGame();
       this.gameState.gameEnded = true;
       this.setState({
         winner: 'draw',
@@ -93,7 +95,7 @@ class BoardBot extends Component {
       return false;
     }
     
-    if (this.gameState.turn === this.gameState.botTurn && !this.gameState.gameEnded) { ////Вот тут
+    if (this.gameState.turn === this.gameState.botTurn && !this.gameState.gameEnded) {
       this.gameState.gameLocked = true;
       setTimeout(() => {
         do {

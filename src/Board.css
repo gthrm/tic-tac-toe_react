@@ -37,12 +37,16 @@
   bottom: 10px;
 }
 
-@media (min-width:320px) and (max-width:1023px){
+@media (min-width:300px) and (max-width:1023px){
   #head {
     top: 5px;
   }
 
   .reset {
   bottom: 5px;
+  }
+
+  .headText {
+    font-size: 25px;
   }
 }

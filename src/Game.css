@@ -12,3 +12,13 @@
   height: 50px;
   position: absolute;
 }
+
+.game-info {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+}

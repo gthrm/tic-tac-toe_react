@@ -13,7 +13,7 @@ class BoardUser extends Component {
       winner: undefined,
       wList: '',
       userName: 'Ходит игрок 1',
-      key: this.props.key
+      key2: this.props.key2
     }
 
     this.gameState = {

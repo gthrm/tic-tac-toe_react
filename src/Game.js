@@ -18,6 +18,7 @@ class Game extends Component {
       selectedOptionUser: '',
       selectedOptionTools: '',
       key: 0,
+      key2: 0,
       gameAll: '',
       gameWin: ''
     }
@@ -28,7 +29,10 @@ class Game extends Component {
       menuOn: !this.state.menuOn,
       selectedOptionUser: '',
       selectedOptionTools: '',
-      key: this.state.key+1
+      gameAll: '',
+      gameWin: '',
+      key1: this.state.key+1,
+      key2: this.state.key+1
     })
   }
 
@@ -40,23 +44,22 @@ class Game extends Component {
     });
   }
 
-  gameAllfunc(){
-    api.gameAll().then(({data})=>{
-      this.setState({
-        GameAll: data
+  gameAllfunc() {
+    if(this.state.gameAll === '' || this.state.gameWin === '') {
+      api.gameAll().then(({data})=>{
+             
+        this.setState({
+          gameAll: data.length
+        });
       });
-    });
 
-    api.gameWin().then(({data})=>{
-      this.setState({
-        GameWin: data
+      api.gameWin().then(({data})=>{
+        
+        this.setState({
+          gameWin: data.length
+        });
       });
-    });
-
     }
-
-  gameAllfuncWin(){
-    return api.gameWin();
   }
 
   render() {
@@ -64,14 +67,13 @@ class Game extends Component {
       <div className="game">
         {this.state.menuOn == true ? <Menu updateData={this.updateData} /> : null}
         <div className="game-board" >
-          {this.state.selectedOptionUser === 'user1' ? <BoardBot apiCreateWinGame={this.createWinGame} apiCreateGame={this.createGame} apiGameWin={this.gameWin} apiGameAll={this.gameAll} key={this.state.key} updateForce={this.updateForce} tools={this.state.selectedOptionTools} /> : <BoardUser key={this.state.key} tools={this.state.selectedOptionTools} updateForce={this.updateForce} />}
+          {this.state.selectedOptionUser === 'user1' ? <BoardBot apiCreateWinGame={api.createWinGame} apiCreateGame={api.createGame} key1={this.state.key1} updateForce={this.updateForce} tools={this.state.selectedOptionTools} /> : <BoardUser key2={this.state.key2} tools={this.state.selectedOptionTools} updateForce={this.updateForce} />}
         </div>
-        <div className="game-info">
-          <div className='info'>
-            <p className='all'>{this.state.gameAll}</p>
-            <p className='win'>{this.state.gameWin}</p>
+        <div className="game-info"> 
+          <div className='headText info' onLoad={this.gameAllfunc()} >
+            <p className='headText all'>Количество сыгранных игр: {this.state.gameAll}</p>
+            <p className='headText win'>Количество выигранных игр: {this.state.gameWin}</p>
           </div>
-          
         </div>
       </div>
     )

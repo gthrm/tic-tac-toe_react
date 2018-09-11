@@ -13,12 +13,10 @@ export function setUpConnection() {
 };
 
 export function allGames() {
-    console.log('Запрос общий');
     return Game.find();
 };
 
 export function winGames() {
-    console.log('Запрос win');
 
     return WinGame.find();
 };
