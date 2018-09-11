@@ -23,6 +23,8 @@
   "description": "��#\u0000 \u0000t\u0000i\u0000c\u0000-\u0000t\u0000a\u0000c\u0000-\u0000t\u0000o\u0000e\u0000_\u0000r\u0000e\u0000a\u0000c\u0000t\u0000\r\u0000 \u0000",
   "main": "index.js",
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
     "babel": "^5.8.38",
     "gh-pages": "^1.2.0"
   },

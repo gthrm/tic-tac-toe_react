@@ -69,12 +69,12 @@ class Game extends Component {
         <div className="game-board" >
           {this.state.selectedOptionUser === 'user1' ? <BoardBot apiCreateWinGame={api.createWinGame} apiCreateGame={api.createGame} key1={this.state.key1} updateForce={this.updateForce} tools={this.state.selectedOptionTools} /> : <BoardUser key2={this.state.key2} tools={this.state.selectedOptionTools} updateForce={this.updateForce} />}
         </div>
-        <div className="game-info"> 
+        {/* <div className="game-info"> 
           <div className='headText info' onLoad={this.gameAllfunc()} >
             <p className='headText all'>Количество сыгранных игр: {this.state.gameAll}</p>
             <p className='headText win'>Количество выигранных игр: {this.state.gameWin}</p>
           </div>
-        </div>
+        </div> */}
       </div>
     )
   }
