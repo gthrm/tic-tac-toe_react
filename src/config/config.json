@@ -1,6 +1,6 @@
 {
-    "apiPrefix": "http://localhost:8080",
-    "serverPort": "8080",
+    "apiPrefix": "http://188.225.35.65:8081",
+    "serverPort": "8081",
     "db": {
         "username": "admin",
         "pass": "admin123",
